@@ -66,25 +66,6 @@ def evaluar(tablero):
 
 
 
-def minimax(tablero, profundidad, maximizando, movimientos_previos):
-    if profundidad == 0 or juego_terminado(tablero):
-        return evaluar(tablero)
-    
-    if maximizando:
-        mejor_valor = -np.inf
-        movimientos = generar_movimientos(tablero, 1, movimientos_previos)
-        for movimiento in movimientos:
-            valor = minimax(movimiento, profundidad - 1, False, movimientos_previos)
-            mejor_valor = max(mejor_valor, valor)
-        return mejor_valor
-    else:
-        mejor_valor = np.inf
-        movimientos = generar_movimientos(tablero, 2, movimientos_previos)
-        for movimiento in movimientos:
-            valor = minimax(movimiento, profundidad - 1, True, movimientos_previos)
-            mejor_valor = min(mejor_valor, valor)
-        return mejor_valor
-
 def generar_movimientos(tablero, jugador, movimientos_previos):
     movimientos = []
     posicion_actual = np.argwhere(tablero == jugador)
